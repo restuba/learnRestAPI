@@ -29,3 +29,19 @@ exports.getById = (req, res) => {
     }
   })
 }
+
+// menambahkan data mahasiswa
+exports.addMahasiswa = (req, res) => {
+  const nim = req.body.nim;
+  const nama = req.body.nama;
+  const jurusan = req.body.jurusan;
+
+  connection.query('INSERT INTO mahasiswa (nim, nama, jurusan) VALUES(?,?,?)', 
+  [nim, nama, jurusan]), (err, rows, fields) => {
+    if(err){
+      console.log(err);
+    }else{
+      response.success('Berhasil menambahkan data!', res);
+    }
+  };
+}
