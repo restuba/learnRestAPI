@@ -60,3 +60,15 @@ exports.editMahasiswa = (req, res) => {
     }
   }
 }
+
+exports.deleteMahasiswa = (req, res) => {
+  const nim = req.body.nim;
+  connection.query('DELETE FROM mahasiswa WHERE nim=?', 
+  [nim]), (err, rows, fields) => {
+    if(err){
+      console.log(err);
+    }else{
+      response.success('Berhasil memperbarui data!', res);
+    }
+  }
+}
