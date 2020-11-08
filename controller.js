@@ -11,7 +11,19 @@ exports.index = (req, res) => {
 exports.getAllMahasiswa = (req, res) => {
   connection.query('SELECT * FROM mahasiswa', (err, rows, fields) => {
     if(err){
-      connection.log(err);
+      console.log(err);
+    }else{
+      response.success(rows, res);
+    }
+  })
+}
+
+// menampilkan data berdasar nim
+exports.getById = (req, res) => {
+  const id = req.params.id;
+  connection.query('SELECT * FROM mahasiswa WHERE nim = ?', [id], (err, rows, fields) => {
+    if(err){
+      console.log(err);
     }else{
       response.success(rows, res);
     }
