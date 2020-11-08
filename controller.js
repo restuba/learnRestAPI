@@ -45,3 +45,18 @@ exports.addMahasiswa = (req, res) => {
     }
   };
 }
+
+exports.editMahasiswa = (req, res) => {
+  const nim = req.body.nim;
+  const nama = req.body.nama;
+  const jurusan = req.body.jurusan;
+
+  connection.query('UPDATE mahasiswa SET nama=?, jurusan=? WHERE nim=?', 
+  [nama, jurusan, nim]), (err, rows, fields) => {
+    if(err){
+      console.log(err);
+    }else{
+      response.success('Berhasil memperbarui data!', res);
+    }
+  }
+}

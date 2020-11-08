@@ -6,4 +6,5 @@ module.exports = app => {
   app.route('/tampil').get(json.getAllMahasiswa);
   app.route('/tampil/:id').get(json.getById);
   app.route('/tambah').post(json.addMahasiswa);
+  app.route('/edit').put(json.editMahasiswa);
 }
