@@ -96,3 +96,7 @@ exports.login = (req, res) => {
     }
   } )
 }
+
+exports.adminPage = (req,res) => {
+  response.success("Halaman ini hanya untuk admin dengan role = 2", res)
+}
