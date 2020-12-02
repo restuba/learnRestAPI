@@ -5,7 +5,6 @@ const response = require('../config');
 const jwt = require('jsonwebtoken');
 const config = require('../config/secret');
 const ip = require('ip');
-const { response } = require('express');
 
 // controller untuk registrasi
 exports.registrasi = (req, res) => {
@@ -17,8 +16,8 @@ exports.registrasi = (req, res) => {
     tanggal_daftar: new Date()
   }
 
-  const query = "SELECT email FROM ?? WHERE ??";
-  const table = ["user", "email", post.email];
+  let query = "SELECT email FROM ?? WHERE ??=?";
+  let table = ["user", "email", post.email];
 
   query = mysql.format(query, table);
 
@@ -27,8 +26,8 @@ exports.registrasi = (req, res) => {
       console.log(err)
     }else{
       if(rows.length == 0){
-        const query = "INSERT INTO ?? SET ??";
-        const table = ["user"];
+        let query = "INSERT INTO ?? SET ?";
+        let table = ["user"];
         query = mysql.format(query, table);
         connection.query(query, post, (err, rows) => {
           if(err){
@@ -38,7 +37,7 @@ exports.registrasi = (req, res) => {
           }
         })
       }else{
-        response.success("Email sudah terdaftar!")
+        response.success("Email sudah terdaftar!", res)
       }
     }
   }) 
